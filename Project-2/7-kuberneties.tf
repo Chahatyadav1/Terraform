@@ -10,6 +10,11 @@ resource "google_container_cluster" "primary" {
   monitoring_service       = "monitoring.googleapis.com/kubernetes"
   networking_mode          = "VPC_NATIVE"
   node_locations           = ["us-central1-a"]
+  deletion_protection = false
+   ip_allocation_policy {
+    cluster_secondary_range_name  = "k8s-pods-range"      
+    services_secondary_range_name = "k8s-services-range"  
+  }
   addons_config {
     http_load_balancing {
       disabled = true
@@ -19,3 +24,5 @@ resource "google_container_cluster" "primary" {
     }
   }
 }
+
+data "google_client_config" "default" {}
