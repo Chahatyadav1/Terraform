@@ -30,11 +30,6 @@ resource "google_bigquery_table" "default" {
       "name": "container_name",
       "type": "STRING",
       "mode": "NULLABLE"
-    },
-    {
-      "name": "namespace_name",
-      "type": "STRING",
-      "mode": "NULLABLE"
     }
   ])
   depends_on = [ google_bigquery_dataset.default ]
